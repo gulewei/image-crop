@@ -1,0 +1,10 @@
+node_modules/
+.cache/
+.ksdist/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+es/
+lib/

@@ -1,0 +1,20 @@
+{
+  "name": "image-crop",
+  "version": "1.0.0",
+  "description": "a simpe mobile image crop solution",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "gh": "node scripts/gh-pages"
+  },
+  "author": "gulewei",
+  "license": "ISC",
+  "dependencies": {
+    "alloyfinger": "^0.1.15",
+    "gh-pages": "^2.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "parcel-bundler": "^1.10.3"
+  }
+}
