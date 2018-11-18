@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "gh": "node scripts/gh-pages"
+    "build:sit": "parcel build index.html -d site --public-url ./ --out-file index",
+    "gh": "npm run build:sit && node scripts/gh-pages"
   },
   "author": "gulewei",
   "license": "ISC",
