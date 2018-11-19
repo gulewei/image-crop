@@ -1,12 +1,15 @@
-# Image crop solution demo
+# Image Crop Solution
 
-[demo address](https://venecy.github.io/image-crop/)
+[Demo Address](https://venecy.github.io/image-crop/)
 
 
 Inspired by [`AlloyCrop`](https://github.com/AlloyTeam/AlloyCrop), really thanks a lot !
 
-## hacks
+## Hacks
 
-    -  image orientation: you need correct display orientation when use iOS camera take an image, this require reading EXIF image metadata, there is `exif-js` to do that.
+    -  Image orientation: 
+    You need correct display orientation when use iOS camera take an image, this require reading EXIF image metadata, there is `exif-js` to do that.
 
-    -  compress image size: render a smaller image with `CanvasHTMLElement.drawImage` to load.
+    -  Compress image size: 
+    Render a smaller image with `CanvasHTMLElement.drawImage` to load.
+    
