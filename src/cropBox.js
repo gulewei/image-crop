@@ -127,13 +127,15 @@ export function renderCover (cover, rect) {
     ctx.save();
     ctx.globalCompositeOperation = 'destination-out';
     ctx.beginPath();
-    ctx.rect(w / 2 - cw / 2, h / 2 - ch / 2, cw, ch);
+    ctx.rect(w / 2 - cw / 2, h / 2 - ch / 2, cw, ch); // rect
+    // ctx.arc(w / 2, h / 2, cw / 2 - 4, 0, Math.PI * 2, false); // circle
     ctx.fill();
     ctx.restore();
     ctx.save();
     ctx.beginPath();
     ctx.strokeStyle = 'white';
-    ctx.rect(w / 2 - cw / 2, h / 2 - ch / 2, cw, ch);
+    ctx.rect(w / 2 - cw / 2, h / 2 - ch / 2, cw, ch); // rect
+    // ctx.arc(w / 2, h / 2, cw / 2 - 4, 0, Math.PI * 2, false); // circle
     ctx.stroke();
 
     css(cover, {

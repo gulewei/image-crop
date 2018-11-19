@@ -1,11 +1,11 @@
 
 import { loadPage } from './pages';
 import { transformImage, renderCover, createBox, calculateRect, drawCrop } from './cropBox';
-import { compress, fixOrientation, compressor } from './compressor';
+import {  fixOrientation, compress } from './compressor';
 
 const rect = {
     height: 200,
-    width: 100
+    width: 200
 };
 
 // 首页
@@ -14,6 +14,7 @@ const onFileChange = (e) => {
     const currentFiles = e.target.files;
     if (currentFiles.length > 0) {
         fixOrientation(currentFiles[0])
+            .then(compress)
             .then(
                 file => loadPage(crop, { imageSrc: window.URL.createObjectURL(file) })
             );
@@ -72,20 +73,18 @@ const crop = {
         // 加载图片
         const imgEl = document.createElement('img');
         imgEl.className = 'crop-image';
-        cropBox.appendChild(imgEl);
-        compressor(imageSrc, (src) => {
-            imgEl.src = src;
-        });
+        imgEl.src = imageSrc;
         imgEl.onload = () => {
             transformImage(imgEl, rect, cropBox);
         };
+        cropBox.appendChild(imgEl);
 
         // 创建canvas遮罩
         const cover = document.createElement('canvas');
         cover.width = window.innerWidth;
         cover.height = window.innerHeight;
-        cropBox.appendChild(cover);
         renderCover(cover, rect);
+        cropBox.appendChild(cover);
 
         container.querySelector('.page-content').appendChild(cropBox);
     },
