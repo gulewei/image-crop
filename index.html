@@ -87,6 +87,10 @@
       justify-content: center;
     }
 
+    .image-loader-wraper label:last-child {
+      margin-left: 20px;
+    }
+
     .image-loader-wraper input[type=file] {
       display: none;
     }
@@ -134,8 +138,15 @@
     <div class="page home-page" data-page="home">
       <div class="page-content">
         <div class="image-loader-wraper">
-          <label for="imageLoader">
+          <!-- <label for="imageLoader">
             <input type="file" id="imageLoader" accept="image/*;" capture="camera" />
+            <a class="button">拍照</a>
+          </label> -->
+          <input type="file" id="imageLoader" accept="image/*" capture='camera'>
+          <a class="button" id="imageLoaderButton">拍照</a>
+
+          <label for="imageSelector">
+            <input type="file" id="imageSelector" accept="image/*;"/>
             <a class="button">选择图片</a>
           </label>
         </div>

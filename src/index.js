@@ -9,23 +9,31 @@ const rect = {
 
 // 首页
 
+const onFileChange = (e) => {
+    const currentFiles = e.target.files;
+    if (currentFiles.length > 0) {
+        loadPage(crop, { imageSrc: window.URL.createObjectURL(currentFiles[0]) });
+    }
+};
+
 const home = {
     pageName: 'home',
     container: document.body.querySelector('[data-page=home]'),
-    events () {
+    events() {
         return {
             // TODO: 处理选择同样图片的情况，同样图片不触发事件
-            '#imageLoader:change': (e) => {
-                const currentFiles = e.target.files;
-                if (currentFiles.length > 0) {
-                    loadPage(crop, { imageSrc: window.URL.createObjectURL(currentFiles[0]) });
-                }
+            '#imageSelector:change': onFileChange,
+            '#imageLoader:change': onFileChange,
+            // hack: 在微信中不能点label调起相机，直接使用input或触发click事件才行
+            '#imageLoaderButton:click': () => {
+                const imageLoader = document.getElementById('imageLoader');
+                imageLoader.click();
             }
         };
     },
-    render () {
+    render() {
     },
-    cached () {
+    cached() {
     }
 };
 
@@ -38,7 +46,7 @@ const crop = {
      * 
      * @param {HTMLElement} container 
      */
-    events (container) {
+    events(container) {
         return {
             '.button-cancel:click': () => {
                 loadPage(home);
@@ -54,7 +62,7 @@ const crop = {
      * @param {HTMLElement} container 
      * @param {*} param1 
      */
-    render (container, { imageSrc }) {
+    render(container, { imageSrc }) {
         const cropBox = createBox();
 
         // 加载图片
@@ -79,7 +87,7 @@ const crop = {
      * 
      * @param {HTMLElement} container 
      */
-    cached (container) {
+    cached(container) {
         const prevBox = container.querySelector('.crop-box');
         if (prevBox) {
             container.querySelector('.page-content').removeChild(prevBox);
@@ -92,7 +100,7 @@ const crop = {
 const result = {
     pageName: 'result',
     container: document.body.querySelector('[data-page=result]'),
-    events () {
+    events() {
         return {
             '.button:click': () => {
                 location.reload();
@@ -104,7 +112,7 @@ const result = {
      * @param {HTMLElement} container 
      * @param {{imgEl: HTMLElement, cropRect: number[]}} param1 
      */
-    render (container, { imgEl, cropRect }) {
+    render(container, { imgEl, cropRect }) {
         const resultCanvas = container.querySelector('#resultCanvas');
         drawCrop(resultCanvas.getContext('2d'), imgEl, cropRect, 1.5);
     }
