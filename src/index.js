@@ -15,7 +15,7 @@ const home = {
     events () {
         return {
             // TODO: 处理选择同样图片的情况，同样图片不触发事件
-            '#imageLoader:input': (e) => {
+            '#imageLoader:change': (e) => {
                 const currentFiles = e.target.files;
                 if (currentFiles.length > 0) {
                     loadPage(crop, { imageSrc: window.URL.createObjectURL(currentFiles[0]) });
