@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "alloyfinger": "^0.1.15",
+    "exif-js": "^2.3.0",
     "gh-pages": "^2.0.1"
   },
   "devDependencies": {

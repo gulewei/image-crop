@@ -147,27 +147,6 @@ export function renderCover (cover, rect) {
 
 /**
  * 
- * @param {CanvasRenderingContext2D} ctx 绘制裁剪结果的context
- * @param {HTMLImageElement} imgEl 
- * @param {number[]} cropRect
- * @param {number} [output=1.5] 
- */
-export function drawCrop (ctx, imgEl, cropRect, output = 1.5) {
-    ctx.drawImage(
-        imgEl,
-        cropRect[0],
-        cropRect[1],
-        cropRect[2],
-        cropRect[3],
-        0,
-        0,
-        cropRect[2] * imgEl.scaleX * output,
-        cropRect[3] * imgEl.scaleY * output
-    );
-}
-
-/**
- * 
  * @param {HTMLImageElement} imgEl 
  * @param {{height: number, width: number}} rect 
  */
@@ -199,4 +178,25 @@ function getOverlap (ax1, ay1, ax2, ay2, bx1, by1, bx2, by2) {
     var right = Math.min(ax2, bx2);
     var bottom = Math.min(ay2, by2);
     return [left, top, right - left, bottom - top];
+}
+
+/**
+ * 
+ * @param {CanvasRenderingContext2D} ctx 绘制裁剪结果的context
+ * @param {HTMLImageElement} imgEl 
+ * @param {number[]} cropRect
+ * @param {number} [output=1.5] 
+ */
+export function drawCrop (ctx, imgEl, cropRect, output = 1.5) {
+    ctx.drawImage(
+        imgEl,
+        cropRect[0],
+        cropRect[1],
+        cropRect[2],
+        cropRect[3],
+        0,
+        0,
+        cropRect[2] * imgEl.scaleX * output,
+        cropRect[3] * imgEl.scaleY * output
+    );
 }

@@ -1,6 +1,7 @@
 
 import { loadPage } from './pages';
 import { transformImage, renderCover, createBox, calculateRect, drawCrop } from './cropBox';
+import { compress, fixOrientation, compressor } from './compressor';
 
 const rect = {
     height: 200,
@@ -12,7 +13,10 @@ const rect = {
 const onFileChange = (e) => {
     const currentFiles = e.target.files;
     if (currentFiles.length > 0) {
-        loadPage(crop, { imageSrc: window.URL.createObjectURL(currentFiles[0]) });
+        fixOrientation(currentFiles[0])
+            .then(
+                file => loadPage(crop, { imageSrc: window.URL.createObjectURL(file) })
+            );
     }
 };
 
@@ -69,7 +73,9 @@ const crop = {
         const imgEl = document.createElement('img');
         imgEl.className = 'crop-image';
         cropBox.appendChild(imgEl);
-        imgEl.src = imageSrc;
+        compressor(imageSrc, (src) => {
+            imgEl.src = src;
+        });
         imgEl.onload = () => {
             transformImage(imgEl, rect, cropBox);
         };
