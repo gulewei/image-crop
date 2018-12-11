@@ -2,21 +2,27 @@
   "name": "image-crop",
   "version": "1.0.0",
   "description": "a simpe mobile image crop solution",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build:sit": "parcel build index.html -d site --public-url ./ --out-file index",
-    "gh": "npm run build:sit && node scripts/gh-pages"
+    "build:demo": "parcel build index.html -d demo-site --public-url ./ --out-file index",
+    "build:lib": "./node_modules/.bin/babel src --out-dir lib",
+    "build:es": "./node_modules/.bin/babel src --out-dir es",
+    "gh": "npm run build:demo && node scripts/gh-pages"
   },
   "author": "gulewei",
   "license": "ISC",
   "dependencies": {
     "alloyfinger": "^0.1.15",
-    "exif-js": "^2.3.0",
-    "gh-pages": "^2.0.1"
+    "exif-js": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
     "eslint": "^5.9.0",
+    "gh-pages": "^2.0.1",
     "parcel-bundler": "^1.10.3"
   }
 }

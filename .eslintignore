@@ -1,2 +1,6 @@
 src/transform.js
 scripts/
+babel.config.js
+lib/
+es/
+dist/

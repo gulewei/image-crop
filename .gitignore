@@ -8,5 +8,5 @@ node_modules/
 !.vscode/extensions.json
 es/
 lib/
-site/
+demo-site/
 dist/
