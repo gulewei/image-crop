@@ -7,6 +7,7 @@
   "scripts": {
     "start": "parcel index.html",
     "build:demo": "parcel build index.html -d demo-site --public-url ./ --out-file index",
+    "build:test": "npm run build:demo && parcel build test/index.html -d demo-site/test --public-url ./ --out-file index",
     "build:lib": "./node_modules/.bin/babel src --out-dir lib",
     "build:es": "./node_modules/.bin/babel src --out-dir es",
     "gh": "npm run build:demo && node scripts/gh-pages"

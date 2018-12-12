@@ -34,3 +34,21 @@ export function calculateRect(imgEl, rect) {
         height = imgEl.naturalHeight - top;
     return [left, top, width, height];
 }
+
+/**
+ * 绘制裁剪区域
+ * @param {HTMLImageElement} imgEl
+ * @param {number[]} cropRect
+ * @param {number} [output=1.5]
+ */
+export function drawCrop(ctx, imgEl, cropRect, output = 1.5) {
+    ctx.drawImage(imgEl, cropRect[0], cropRect[1], cropRect[2], cropRect[3], 0, 0, cropRect[2] * imgEl.scaleX * output, cropRect[3] * imgEl.scaleY * output);
+}
+
+export function getCrop (imgEl, rect, output) {
+    return new Promise((resolve) => {
+        const canvas = document.createElement('canvas');
+        drawCrop(canvas.getContext('2d'), imgEl, calculateRect(imgEl, rect), output);
+        canvas.toBlob(file => resolve(file), 'image/jpeg', 0.92);
+    });
+}

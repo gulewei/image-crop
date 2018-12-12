@@ -1,13 +1,13 @@
 /**
  * 图片压缩
- * @param {File} file 输入图片
+ * @param {File | string} file 输入图片
  * @param {number} quality
  * @returns {Promise<File>}
  */
 export function compress(file, quality = 0.92) {
     return new Promise((resolve, reject) => {
         const imgEl = new Image();
-        imgEl.src = window.URL.createObjectURL(file);
+        imgEl.src = typeof file === 'string' ? file : window.URL.createObjectURL(file);
         imgEl.onerror = () => reject(file);
         imgEl.onload = () => {
             const originWidth = imgEl.width;
