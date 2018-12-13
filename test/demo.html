@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Compositing Demo</title>
+    <style>
+        img, canvas {
+            border: 1px solid #999;
+            margin-right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./face.new.png" id="face" alt="">
+    <img src="./cat.min.png" id="cat" alt="">
+    <canvas id="canvas" height="126" width="126"></canvas>
+    <a href="" id="download" download="croped-face.png">download</a>
+
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext("2d");
+
+        var face = document.getElementById('face');
+        var cat = document.getElementById('cat');
+
+        Promise.all([
+            new Promise(resolve => face.onload = () => resolve(face)),
+            new Promise(resolve => cat.onload = () => resolve(cat)),
+        ]).then(([face, cat]) => {
+            // 绘制脸部底图
+            ctx.drawImage(face, 0, 0, 126, 126);
+            // 切换合成操作
+            ctx.globalCompositeOperation = "source-in";
+            // 绘制头像
+            ctx.drawImage(cat, 0, 0, 126, 126);
+
+            canvas.toBlob(file => {
+                document.getElementById('download').href = window.URL.createObjectURL(file);
+            });
+        });
+    </script>
+</body>
+
+</html>

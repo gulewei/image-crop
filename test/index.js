@@ -1,6 +1,7 @@
 
 import urlFace from './face.png';
-import urlCat from './lixiao.jpg';
+// import urlCat from './mao.jpg';
+import urlCat from './viszo.jpg';
 
 const faceRect = {
     width: 110,
@@ -31,9 +32,15 @@ Promise.all(
     ctx.drawImage(face, 0, 0, face.naturalWidth, face.naturalHeight);
     ctx.globalCompositeOperation = 'source-in';
     const offset = {
+        // x: 0,
+        // y: -140,
+        // zoom: 2.6
+        // x: -3,
+        // y: -10,
+        // zoom: 1.2
         x: 0,
-        y: -140,
-        zoom: 2.6
+        y: 0,
+        zoom: 1
     };
     const rato = faceRect.height / catRect.height * offset.zoom;
     const pictureRect = {
